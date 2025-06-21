@@ -19,7 +19,8 @@ public class ResponseApiController {
         user.setEmail("hong@gmail.com");
         log.info("user: {}", user);
         var response = ResponseEntity
-                .status(HttpStatus.BAD_REQUEST)
+                .status(HttpStatus.CREATED)
+                .header("x-custom","hi")
                 .body(user);
         return response;
     }
