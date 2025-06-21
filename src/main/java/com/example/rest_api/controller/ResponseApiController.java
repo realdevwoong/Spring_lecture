@@ -5,16 +5,15 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
 @Slf4j
 @Controller
 @RequestMapping("/api/v1")
 public class ResponseApiController {
     @RequestMapping(path="", method= RequestMethod.GET)
-    public ResponseEntity<UserRequest> user(){
+    @ResponseBody
+    public UserRequest user(){
         var user = new UserRequest();
         user.setUserName("홍길동");
         user.setUserAge(10);
@@ -24,6 +23,6 @@ public class ResponseApiController {
                 .status(HttpStatus.CREATED)
                 .header("x-custom","hi")
                 .body(user);
-        return response;
+        return user;
     }
 }
