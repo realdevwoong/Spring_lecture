@@ -12,14 +12,14 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/v1")
 public class ResponseApiController {
     @GetMapping("")
-    public ResponseEntity user(){
+    public ResponseEntity<UserRequest> user(){
         var user = new UserRequest();
         user.setUserName("홍길동");
         user.setUserAge(10);
         user.setEmail("hong@gmail.com");
         log.info("user: {}", user);
         var response = ResponseEntity
-                .status(HttpStatus.OK)
+                .status(HttpStatus.BAD_REQUEST)
                 .body(user);
         return response;
     }
